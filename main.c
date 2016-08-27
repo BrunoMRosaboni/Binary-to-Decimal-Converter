@@ -1,8 +1,7 @@
 #include <stdio.h>
-/*#include <stdlib.h>*/
 
-unsigned long int CalcRec(unsigned long int NumBin);
-unsigned long int CalcIt(unsigned long int NumBin);
+unsigned long int RecursiveCalc(unsigned long int NumBin);
+unsigned long int IterativeCalc(unsigned long int NumBin);
 
 int main(void)
 {
@@ -10,34 +9,33 @@ int main(void)
 
 	scanf("%lu", &NumBin);
 
-	Valor = CalcIt(NumBin);
+	Valor = IterativeCalc(NumBin);
 	printf("%lu", Valor);
 	printf("\n");
-	Valor = CalcRec(NumBin);
+	Valor = RecursiveCalc(NumBin);
+	printf("%lu", Valor);
+	printf("\n");
 
-	printf("%lu", Valor);
-	printf("\n");
-	
 	return 0;
 }
 
-unsigned long int CalcRec(unsigned long int NumBin)
+unsigned long int RecursiveCalc(unsigned long int NumBin)
 {
-	unsigned long int Valor=1, Resto, count=10;
-
-	Resto = NumBin%count;
-	NumBin = NumBin/count;
+	unsigned long int Valor=0, Resto, count=10;
 
 	if (NumBin > 0)
 	{
-		Valor = CalcRec(NumBin);
+		Valor=1;
+		Resto = NumBin%count;
+		NumBin = NumBin/count;
+		Valor = RecursiveCalc(NumBin);
 		Valor = (Valor * 2) + Resto;
 	}
 
 	return Valor;
 }
 
-unsigned long int CalcIt(unsigned long int NumBin)
+unsigned long int IterativeCalc(unsigned long int NumBin)
 {
 	unsigned long int i, count, aux, Valor;
 
